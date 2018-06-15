@@ -5,3 +5,8 @@ install_nagios:
       - nagios-plugins
 
 
+copy server file:
+   file.managed:
+      - name: /etc/nagios/nrpe.cfg
+      - source: salt://nrpe.cfg
+
