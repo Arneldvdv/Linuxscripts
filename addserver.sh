@@ -4,7 +4,7 @@
 x=2
 
 
-for i in 1 2
+for i in 1 
 do
 commandip="sudo salt 'UBU1604-VM$x*' cmd.run 'hostname -i'"
 ip=$(eval $commandip)
@@ -15,9 +15,9 @@ devicename="$(cut -d':' -f1 <<< $ip)"
 sudo touch /usr/local/nagios/etc/servers/$devicename.cfg 
 sudo chmod 755 /usr/local/nagios/etc/servers/$devicename.cfg 
 
-sudo echo " # Ubuntu Host configuration file
+sudo echo "# Ubuntu Host configuration file
 define host {
-        use                          linux-server
+        use                          linux-servers
         host_name                    $devicename
         alias                        Ubuntu Host
         address                      $IP
@@ -102,6 +102,6 @@ define service {
       notification_period             24x7
       notifications_enabled           1
       register                        1
-} " >> /usr/local/nagios/etc/servers/$devicename.cfg 
+} " > /usr/local/nagios/etc/servers/${devicename}.cfg 
 ((x=x+1))
 done
