@@ -1,3 +1,11 @@
+python-pip:
+  pkg.installed
+
+docker-py:
+  pip.installed:
+    - require:
+      - pkg: python-pip
+
 docker_repository:
   pkgrepo.managed:
     - humanname: Docker
